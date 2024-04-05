@@ -68,7 +68,7 @@
             // 
             // cmdVolver
             // 
-            cmdVolver.Location = new Point(468, 210);
+            cmdVolver.Location = new Point(468, 208);
             cmdVolver.Name = "cmdVolver";
             cmdVolver.Size = new Size(75, 23);
             cmdVolver.TabIndex = 3;
