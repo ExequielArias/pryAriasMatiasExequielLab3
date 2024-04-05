@@ -16,7 +16,7 @@ namespace pryAriasMatiasExequiel
         {
             this.Hide();
             frmFirma firma = new frmFirma();
-            firma.ShowDialog(); 
+            firma.ShowDialog();
         }
     }
 }
