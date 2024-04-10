@@ -47,8 +47,21 @@ namespace pryAriasMatiasExequiel
 
         private void cmdGrabar_Click(object sender, EventArgs e)
         {
-            archivoImagen.Save("Experimento.jpg");
-            MessageBox.Show("La imagen se guardo correctamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //Corregir Todo el evento
+            try
+            {
+                if (pbDibujo.BackgroundImage == null)
+                {
+                    MessageBox.Show("Dibuje algo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception)
+            {
+                archivoImagen.Save("Experimento.jpg");
+                MessageBox.Show("La imagen se guardo correctamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            } 
+            
+            
         }
 
         private void pbDibujo_Paint(object sender, PaintEventArgs e)
