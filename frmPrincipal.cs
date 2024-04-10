@@ -9,14 +9,30 @@ namespace pryAriasMatiasExequiel
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+
         }
 
         private void dibujarFirmaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void cmdSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void cmdFirma_Click(object sender, EventArgs e)
+        {
             this.Hide();
             frmFirma firma = new frmFirma();
-            firma.ShowDialog(); 
+            firma.ShowDialog();
+        }
+
+        private void cmdJuego_Click(object sender, EventArgs e)
+        {
+            frmJuego juego = new frmJuego();
+            juego.ShowDialog(); 
         }
     }
 }

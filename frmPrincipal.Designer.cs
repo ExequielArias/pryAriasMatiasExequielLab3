@@ -28,54 +28,60 @@
         /// </summary>
         private void InitializeComponent()
         {
-            menuStrip1 = new MenuStrip();
-            dibujarFirmaToolStripMenuItem = new ToolStripMenuItem();
-            salirToolStripMenuItem = new ToolStripMenuItem();
-            menuStrip1.SuspendLayout();
+            cmdFirma = new Button();
+            cmdJuego = new Button();
+            cmdSalir = new Button();
             SuspendLayout();
             // 
-            // menuStrip1
+            // cmdFirma
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { dibujarFirmaToolStripMenuItem, salirToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(548, 24);
-            menuStrip1.TabIndex = 0;
-            menuStrip1.Text = "menuStrip1";
+            cmdFirma.Location = new Point(12, 12);
+            cmdFirma.Name = "cmdFirma";
+            cmdFirma.Size = new Size(175, 64);
+            cmdFirma.TabIndex = 0;
+            cmdFirma.Text = "Firma";
+            cmdFirma.UseVisualStyleBackColor = true;
+            cmdFirma.Click += cmdFirma_Click;
             // 
-            // dibujarFirmaToolStripMenuItem
+            // cmdJuego
             // 
-            dibujarFirmaToolStripMenuItem.Name = "dibujarFirmaToolStripMenuItem";
-            dibujarFirmaToolStripMenuItem.Size = new Size(90, 20);
-            dibujarFirmaToolStripMenuItem.Text = "Dibujar Firma";
-            dibujarFirmaToolStripMenuItem.Click += dibujarFirmaToolStripMenuItem_Click;
+            cmdJuego.Location = new Point(12, 82);
+            cmdJuego.Name = "cmdJuego";
+            cmdJuego.Size = new Size(175, 64);
+            cmdJuego.TabIndex = 1;
+            cmdJuego.Text = "Juego";
+            cmdJuego.UseVisualStyleBackColor = true;
+            cmdJuego.Click += cmdJuego_Click;
             // 
-            // salirToolStripMenuItem
+            // cmdSalir
             // 
-            salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            salirToolStripMenuItem.Size = new Size(41, 20);
-            salirToolStripMenuItem.Text = "Salir";
-            salirToolStripMenuItem.Click += salirToolStripMenuItem_Click;
+            cmdSalir.Location = new Point(62, 161);
+            cmdSalir.Name = "cmdSalir";
+            cmdSalir.Size = new Size(75, 23);
+            cmdSalir.TabIndex = 2;
+            cmdSalir.Text = "Salir";
+            cmdSalir.UseVisualStyleBackColor = true;
+            cmdSalir.Click += cmdSalir_Click;
             // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(548, 385);
-            Controls.Add(menuStrip1);
-            MainMenuStrip = menuStrip1;
+            ClientSize = new Size(202, 199);
+            Controls.Add(cmdSalir);
+            Controls.Add(cmdJuego);
+            Controls.Add(cmdFirma);
+            MaximizeBox = false;
             Name = "frmPrincipal";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Principal";
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem dibujarFirmaToolStripMenuItem;
-        private ToolStripMenuItem salirToolStripMenuItem;
+        private Button cmdFirma;
+        private Button cmdJuego;
+        private Button cmdSalir;
     }
 }
