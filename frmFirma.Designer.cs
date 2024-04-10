@@ -85,7 +85,9 @@
             Controls.Add(cmdBorrar);
             Controls.Add(cmdGrabar);
             Controls.Add(pbDibujo);
+            MaximizeBox = false;
             Name = "frmFirma";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmFirma";
             Load += frmFirma_Load;
             ((System.ComponentModel.ISupportInitialize)pbDibujo).EndInit();

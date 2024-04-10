@@ -21,7 +21,7 @@ namespace pryAriasMatiasExequiel
         {
             Vida = 100;
             Nombre = "Jugador1";
-            PuntosDaño = 1; 
+            PuntosDaño = 20; 
             imgNave = new PictureBox();
             imgNave.SizeMode = PictureBoxSizeMode.StretchImage; 
             imgNave.ImageLocation = "https://ideascdn.lego.com/media/generate/lego_ci/c9841b69-dddb-464d-88df-43778b2a2a44/resize:950:633/jpg"; 
