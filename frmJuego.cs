@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Windows;
+
 
 namespace pryAriasMatiasExequiel
 {
@@ -28,8 +31,23 @@ namespace pryAriasMatiasExequiel
 
             objNaveEnemiga = new clsNave();
             objNaveEnemiga.CrearEnemigo();
-            objNaveEnemiga.imgNaveEnemiga.Location = new Point(400, 200);
-            Controls.Add(objNaveEnemiga.imgNaveEnemiga);
+            objNaveEnemiga.imgNave.Location = new Point(300, 3);
+            Controls.Add(objNaveEnemiga.imgNave);
+
+            objNaveEnemiga = new clsNave();
+            objNaveEnemiga.CrearEnemigo();
+            objNaveEnemiga.imgNave.Location = new Point(95, 3);
+            Controls.Add(objNaveEnemiga.imgNave);
+
+            objNaveEnemiga = new clsNave();
+            objNaveEnemiga.CrearEnemigo();
+            objNaveEnemiga.imgNave.Location = new Point(2, 3);
+            Controls.Add(objNaveEnemiga.imgNave);
+
+            objNaveEnemiga = new clsNave();
+            objNaveEnemiga.CrearEnemigo();
+            objNaveEnemiga.imgNave.Location = new Point(200, 3);
+            Controls.Add(objNaveEnemiga.imgNave);
 
         }
 
@@ -38,12 +56,31 @@ namespace pryAriasMatiasExequiel
             if (e.KeyCode == Keys.Right)
             {
                 objNaveJugador.imgNave.Location = new Point(
-                    objNaveJugador.imgNave.Location.X + 5, objNaveJugador.imgNave.Location.Y);
+                objNaveJugador.imgNave.Location.X + 5, objNaveJugador.imgNave.Location.Y);
             }
             if (e.KeyCode == Keys.Left)
             {
                 objNaveJugador.imgNave.Location = new Point(
-                    objNaveJugador.imgNave.Location.X - 5, objNaveJugador.imgNave.Location.Y);
+                objNaveJugador.imgNave.Location.X - 5, objNaveJugador.imgNave.Location.Y);
+            }
+        }
+
+        private void frmJuego_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void frmJuego_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Right)
+            {
+                objNaveJugador.imgNave.Location = new Point(
+                objNaveJugador.imgNave.Location.X + 5, objNaveJugador.imgNave.Location.Y);
+            }
+            if (e.KeyCode == Keys.Left)
+            {
+                objNaveJugador.imgNave.Location = new Point(
+                objNaveJugador.imgNave.Location.X - 5, objNaveJugador.imgNave.Location.Y);
             }
         }
     }

@@ -42,6 +42,8 @@
             Text = "Galaga GAME";
             Load += frmJuego_Load;
             KeyDown += frmJuego_KeyDown;
+            KeyPress += frmJuego_KeyPress;
+            KeyUp += frmJuego_KeyUp;
             ResumeLayout(false);
         }
 

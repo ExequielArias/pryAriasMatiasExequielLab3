@@ -14,7 +14,6 @@ namespace pryAriasMatiasExequiel
         public string Nombre;
         int PuntosDaño;
         public PictureBox imgNave;
-        public PictureBox imgNaveEnemiga;
 
 
         public void CrearJugador() 
@@ -32,9 +31,10 @@ namespace pryAriasMatiasExequiel
             Vida = 20;
             Nombre = "Enemigo1";
             PuntosDaño = 2;
-            imgNaveEnemiga = new PictureBox();
-            imgNaveEnemiga.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgNaveEnemiga.ImageLocation = "https://w7.pngwing.com/pngs/48/397/png-transparent-galaxian-pac-man-space-invaders-galaga-dig-dug-ghost-ship-flag-text-rectangle-thumbnail.png";
+            imgNave = new PictureBox();
+            imgNave.SizeMode = PictureBoxSizeMode.StretchImage;
+            imgNave.ImageLocation = "https://w7.pngwing.com/pngs/48/397/png-transparent-galaxian-pac-man-space-invaders-galaga-dig-dug-ghost-ship-flag-text-rectangle-thumbnail.png";
+
         }
     }
 }
