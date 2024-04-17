@@ -14,6 +14,7 @@ namespace pryAriasMatiasExequiel
         public string Nombre;
         int PuntosDaño;
         public PictureBox imgNave;
+        public PictureBox imgBala;
 
 
         public void CrearJugador() 
@@ -23,7 +24,9 @@ namespace pryAriasMatiasExequiel
             PuntosDaño = 20; 
             imgNave = new PictureBox();
             imgNave.SizeMode = PictureBoxSizeMode.StretchImage; 
-            imgNave.ImageLocation = "https://ideascdn.lego.com/media/generate/lego_ci/c9841b69-dddb-464d-88df-43778b2a2a44/resize:950:633/jpg"; 
+            imgNave.ImageLocation = "https://opengameart.org/sites/default/files/lighter.gif";
+            imgNave.BackColor = Color.Transparent;
+            imgNave.Size = new Size(60, 60);
         }
 
         public void CrearEnemigo()
@@ -33,8 +36,11 @@ namespace pryAriasMatiasExequiel
             PuntosDaño = 2;
             imgNave = new PictureBox();
             imgNave.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgNave.ImageLocation = "https://w7.pngwing.com/pngs/48/397/png-transparent-galaxian-pac-man-space-invaders-galaga-dig-dug-ghost-ship-flag-text-rectangle-thumbnail.png";
+            imgNave.ImageLocation = "https://cdnb.artstation.com/p/assets/images/images/006/503/665/original/william-robinson-gun-alien-passive-gif.gif?1499108527";
+            imgNave.BackColor = Color.Transparent;
+            imgNave.Size = new Size(60, 60);
 
         }
+        
     }
 }

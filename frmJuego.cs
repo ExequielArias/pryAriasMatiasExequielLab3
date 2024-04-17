@@ -17,6 +17,7 @@ namespace pryAriasMatiasExequiel
     {
         clsNave objNaveJugador;
         clsNave objNaveEnemiga;
+        clsNave objRayoLaser; 
         public frmJuego()
         {
             InitializeComponent();
@@ -26,28 +27,19 @@ namespace pryAriasMatiasExequiel
         {
             objNaveJugador = new clsNave();
             objNaveJugador.CrearJugador();
-            objNaveJugador.imgNave.Location = new Point(150, 750);
+            objNaveJugador.imgNave.Location = new Point(250, 635);
             Controls.Add(objNaveJugador.imgNave);
 
-            objNaveEnemiga = new clsNave();
-            objNaveEnemiga.CrearEnemigo();
-            objNaveEnemiga.imgNave.Location = new Point(300, 3);
-            Controls.Add(objNaveEnemiga.imgNave);
 
             objNaveEnemiga = new clsNave();
-            objNaveEnemiga.CrearEnemigo();
-            objNaveEnemiga.imgNave.Location = new Point(95, 3);
-            Controls.Add(objNaveEnemiga.imgNave);
-
-            objNaveEnemiga = new clsNave();
-            objNaveEnemiga.CrearEnemigo();
-            objNaveEnemiga.imgNave.Location = new Point(2, 3);
-            Controls.Add(objNaveEnemiga.imgNave);
-
-            objNaveEnemiga = new clsNave();
-            objNaveEnemiga.CrearEnemigo();
-            objNaveEnemiga.imgNave.Location = new Point(200, 3);
-            Controls.Add(objNaveEnemiga.imgNave);
+            int x = 23;
+            for (int i = 0; i < 7; i++)
+            {
+                objNaveEnemiga.CrearEnemigo();
+                objNaveEnemiga.imgNave.Location = new Point(x, 50);
+                Controls.Add(objNaveEnemiga.imgNave);
+                x += objNaveEnemiga.imgNave.Size.Width * 2; 
+            }
 
         }
 
@@ -62,7 +54,10 @@ namespace pryAriasMatiasExequiel
             {
                 objNaveJugador.imgNave.Location = new Point(
                 objNaveJugador.imgNave.Location.X - 5, objNaveJugador.imgNave.Location.Y);
+
+
             }
+
         }
 
         private void frmJuego_KeyPress(object sender, KeyPressEventArgs e)
