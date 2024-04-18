@@ -17,7 +17,7 @@ namespace pryAriasMatiasExequiel
     {
         clsNave objNaveJugador;
         clsNave objNaveEnemiga;
-        clsNave objRayoLaser; 
+        clsNave objLaser;
         public frmJuego()
         {
             InitializeComponent();
@@ -36,9 +36,9 @@ namespace pryAriasMatiasExequiel
             for (int i = 0; i < 7; i++)
             {
                 objNaveEnemiga.CrearEnemigo();
-                objNaveEnemiga.imgNave.Location = new Point(x, 50);
-                Controls.Add(objNaveEnemiga.imgNave);
-                x += objNaveEnemiga.imgNave.Size.Width * 2; 
+                objNaveEnemiga.imgNaveEnemiga.Location = new Point(x, 50);
+                Controls.Add(objNaveEnemiga.imgNaveEnemiga);
+                x += objNaveEnemiga.imgNaveEnemiga.Size.Width * 2;
             }
 
         }
@@ -56,6 +56,11 @@ namespace pryAriasMatiasExequiel
                 objNaveJugador.imgNave.Location.X - 5, objNaveJugador.imgNave.Location.Y);
 
 
+            }
+            if (e.KeyCode == Keys.Space)
+            {
+                objLaser.imgBala.Location = new Point(objLaser.imgBala.Location.X,
+                    objLaser.imgBala.Location.Y - 35);
             }
 
         }
@@ -77,6 +82,40 @@ namespace pryAriasMatiasExequiel
                 objNaveJugador.imgNave.Location = new Point(
                 objNaveJugador.imgNave.Location.X - 5, objNaveJugador.imgNave.Location.Y);
             }
+            if (e.KeyCode == Keys.Space)
+            {
+                objLaser.imgBala.Location = new Point(objLaser.imgBala.Location.X,
+                    objLaser.imgBala.Location.Y - 35);
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            int y = 635;
+            objLaser = new clsNave();
+            objLaser.CrearBala();
+            objLaser.imgBala.Location = new Point(277, y);
+            Controls.Add(objLaser.imgBala);
+
+
+            if (objLaser.imgBala.Location.Y > 0)
+            {
+                if (objLaser.imgBala.Bounds.IntersectsWith(objNaveEnemiga.imgNaveEnemiga.Bounds))
+                {
+                    objLaser.imgBala.Dispose();
+                    objNaveEnemiga.imgNaveEnemiga.Dispose();
+                }
+                else
+                {
+                    objLaser.imgBala.Location = new Point(objLaser.imgBala.Location.X, objLaser.imgBala.Location.Y - 15);
+                }
+
+            }
+            else
+            {
+                objLaser.imgBala.Dispose();
+            }
         }
     }
 }
+

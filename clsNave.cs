@@ -15,6 +15,7 @@ namespace pryAriasMatiasExequiel
         int PuntosDaño;
         public PictureBox imgNave;
         public PictureBox imgBala;
+        public PictureBox imgNaveEnemiga;
 
 
         public void CrearJugador() 
@@ -34,11 +35,21 @@ namespace pryAriasMatiasExequiel
             Vida = 20;
             Nombre = "Enemigo1";
             PuntosDaño = 2;
-            imgNave = new PictureBox();
-            imgNave.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgNave.ImageLocation = "https://cdnb.artstation.com/p/assets/images/images/006/503/665/original/william-robinson-gun-alien-passive-gif.gif?1499108527";
-            imgNave.BackColor = Color.Transparent;
-            imgNave.Size = new Size(60, 60);
+            imgNaveEnemiga = new PictureBox();
+            imgNaveEnemiga.SizeMode = PictureBoxSizeMode.StretchImage;
+            imgNaveEnemiga.ImageLocation = "https://cdnb.artstation.com/p/assets/images/images/006/503/665/original/william-robinson-gun-alien-passive-gif.gif?1499108527";
+            imgNaveEnemiga.BackColor = Color.Transparent;
+            imgNaveEnemiga.Size = new Size(60, 60);
+
+        }
+        public void CrearBala() 
+        {
+            PuntosDaño = 20;
+            imgBala = new PictureBox();
+            imgBala.SizeMode = PictureBoxSizeMode.StretchImage;
+            imgBala.ImageLocation = "https://cdna.artstation.com/p/assets/images/images/067/870/542/original/lucia-robbins-laser-beam-1.gif?1696429104&dl=1";
+            imgBala.BackColor = Color.Transparent;
+            imgBala.Size = new Size(30, 50);
 
         }
         
