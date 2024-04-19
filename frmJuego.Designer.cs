@@ -30,13 +30,17 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmJuego));
-            timer1 = new System.Windows.Forms.Timer(components);
+            temporizadorBala = new System.Windows.Forms.Timer(components);
+            temporizadorEnemigo = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
-            // timer1
+            // temporizadorBala
             // 
-            timer1.Enabled = true;
-            timer1.Tick += timer1_Tick;
+            temporizadorBala.Tick += temporizadorBala_Tick;
+            // 
+            // temporizadorEnemigo
+            // 
+            temporizadorEnemigo.Tick += temporizadorEnemigo_Tick;
             // 
             // frmJuego
             // 
@@ -58,6 +62,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer temporizadorBala;
+        private System.Windows.Forms.Timer temporizadorEnemigo;
     }
 }

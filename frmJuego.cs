@@ -17,7 +17,8 @@ namespace pryAriasMatiasExequiel
     {
         clsNave objNaveJugador;
         clsNave objNaveEnemiga;
-        clsNave objLaser;
+        clsNave objLaser; 
+
         public frmJuego()
         {
             InitializeComponent();
@@ -31,15 +32,8 @@ namespace pryAriasMatiasExequiel
             Controls.Add(objNaveJugador.imgNave);
 
 
-            objNaveEnemiga = new clsNave();
-            int x = 23;
-            for (int i = 0; i < 7; i++)
-            {
-                objNaveEnemiga.CrearEnemigo();
-                objNaveEnemiga.imgNaveEnemiga.Location = new Point(x, 50);
-                Controls.Add(objNaveEnemiga.imgNaveEnemiga);
-                x += objNaveEnemiga.imgNaveEnemiga.Size.Width * 2;
-            }
+            
+            temporizadorEnemigo.Enabled = true; 
 
         }
 
@@ -59,8 +53,12 @@ namespace pryAriasMatiasExequiel
             }
             if (e.KeyCode == Keys.Space)
             {
-                objLaser.imgBala.Location = new Point(objLaser.imgBala.Location.X,
-                    objLaser.imgBala.Location.Y - 35);
+                objLaser = new clsNave();
+                objLaser.CrearBala(); 
+                objLaser.imgBala.Location = new Point(objNaveJugador.imgNave.Location.X + 20, objNaveJugador.imgNave.Location.Y - 20);
+                objNaveJugador.imgNave.BringToFront();
+                Controls.Add(objLaser.imgBala);
+                temporizadorBala.Enabled = true;
             }
 
         }
@@ -72,48 +70,57 @@ namespace pryAriasMatiasExequiel
 
         private void frmJuego_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Right)
-            {
-                objNaveJugador.imgNave.Location = new Point(
-                objNaveJugador.imgNave.Location.X + 5, objNaveJugador.imgNave.Location.Y);
-            }
-            if (e.KeyCode == Keys.Left)
-            {
-                objNaveJugador.imgNave.Location = new Point(
-                objNaveJugador.imgNave.Location.X - 5, objNaveJugador.imgNave.Location.Y);
-            }
-            if (e.KeyCode == Keys.Space)
-            {
-                objLaser.imgBala.Location = new Point(objLaser.imgBala.Location.X,
-                    objLaser.imgBala.Location.Y - 35);
-            }
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            int y = 635;
-            objLaser = new clsNave();
-            objLaser.CrearBala();
-            objLaser.imgBala.Location = new Point(277, y);
-            Controls.Add(objLaser.imgBala);
 
+        }
 
+        private void temporizadorBala_Tick(object sender, EventArgs e)
+        {
+            objNaveEnemiga = new clsNave();
+            objNaveEnemiga.CrearEnemigo();  
             if (objLaser.imgBala.Location.Y > 0)
             {
-                if (objLaser.imgBala.Bounds.IntersectsWith(objNaveEnemiga.imgNaveEnemiga.Bounds))
+               objLaser.imgBala.Location = new Point(objLaser.imgBala.Location.X, objLaser.imgBala.Location.Y - 100);
+                foreach (Control imagen in Controls)
                 {
-                    objLaser.imgBala.Dispose();
-                    objNaveEnemiga.imgNaveEnemiga.Dispose();
+                    if (imagen.Tag == "enemigo")
+                    {
+                        if (objLaser.imgBala.Bounds.IntersectsWith(imagen.Bounds))
+                        {
+                            objLaser.imgBala.Dispose();
+                            imagen.Dispose();
+                        }
+                    }
+                    
                 }
-                else
-                {
-                    objLaser.imgBala.Location = new Point(objLaser.imgBala.Location.X, objLaser.imgBala.Location.Y - 15);
-                }
-
+               
             }
             else
             {
                 objLaser.imgBala.Dispose();
+            }
+        }
+        int contador;
+        private void temporizadorEnemigo_Tick(object sender, EventArgs e)
+        {
+            if (contador < 10)
+            {
+                
+                objNaveEnemiga = new clsNave();
+                int x = 23;
+                for (int i = 0; i < 7; i++)
+                {
+                    objNaveEnemiga.CrearEnemigo();
+                    objNaveEnemiga.imgNaveEnemiga.Tag = "enemigo";
+                    objNaveEnemiga.imgNaveEnemiga.Location = new Point(x, 50);
+                    Controls.Add(objNaveEnemiga.imgNaveEnemiga);
+                    x += objNaveEnemiga.imgNaveEnemiga.Size.Width * 2;
+                }
+                contador++;
             }
         }
     }

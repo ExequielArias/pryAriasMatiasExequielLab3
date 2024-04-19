@@ -32,7 +32,7 @@ namespace pryAriasMatiasExequiel
 
         public void CrearEnemigo()
         {
-            Vida = 20;
+            Vida = 1;
             Nombre = "Enemigo1";
             PuntosDaño = 2;
             imgNaveEnemiga = new PictureBox();
