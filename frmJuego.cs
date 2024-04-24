@@ -17,24 +17,21 @@ namespace pryAriasMatiasExequiel
     {
         clsNave objNaveJugador;
         clsNave objNaveEnemiga;
-        clsNave objLaser; 
+        clsNave objLaser;
 
         public frmJuego()
         {
             InitializeComponent();
         }
-
+        
         private void frmJuego_Load(object sender, EventArgs e)
         {
             objNaveJugador = new clsNave();
             objNaveJugador.CrearJugador();
             objNaveJugador.imgNave.Location = new Point(250, 635);
             Controls.Add(objNaveJugador.imgNave);
-
-
+            temporizadorEnemigo.Enabled = true;
             
-            temporizadorEnemigo.Enabled = true; 
-
         }
 
         private void frmJuego_KeyDown(object sender, KeyEventArgs e)
@@ -54,7 +51,7 @@ namespace pryAriasMatiasExequiel
             if (e.KeyCode == Keys.Space)
             {
                 objLaser = new clsNave();
-                objLaser.CrearBala(); 
+                objLaser.CrearBala();
                 objLaser.imgBala.Location = new Point(objNaveJugador.imgNave.Location.X + 20, objNaveJugador.imgNave.Location.Y - 20);
                 objNaveJugador.imgNave.BringToFront();
                 Controls.Add(objLaser.imgBala);
@@ -80,11 +77,12 @@ namespace pryAriasMatiasExequiel
 
         private void temporizadorBala_Tick(object sender, EventArgs e)
         {
+            int suma = 10;
             objNaveEnemiga = new clsNave();
-            objNaveEnemiga.CrearEnemigo();  
+            objNaveEnemiga.CrearEnemigo();
             if (objLaser.imgBala.Location.Y > 0)
             {
-               objLaser.imgBala.Location = new Point(objLaser.imgBala.Location.X, objLaser.imgBala.Location.Y - 100);
+                objLaser.imgBala.Location = new Point(objLaser.imgBala.Location.X, objLaser.imgBala.Location.Y - 100);
                 foreach (Control imagen in Controls)
                 {
                     if (imagen.Tag == "enemigo")
@@ -94,22 +92,25 @@ namespace pryAriasMatiasExequiel
                             objLaser.imgBala.Dispose();
                             imagen.Dispose();
                         }
+                        
                     }
-                    
+                    suma++;
                 }
                
             }
+             
             else
             {
                 objLaser.imgBala.Dispose();
             }
+            lblPuntos.Text = Convert.ToString(suma);
         }
         int contador;
         private void temporizadorEnemigo_Tick(object sender, EventArgs e)
         {
             if (contador < 10)
             {
-                
+
                 objNaveEnemiga = new clsNave();
                 int x = 23;
                 for (int i = 0; i < 7; i++)
