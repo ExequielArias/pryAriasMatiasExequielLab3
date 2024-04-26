@@ -19,6 +19,7 @@ namespace pryAriasMatiasExequiel
         clsNave objNaveEnemiga;
         clsNave objLaser;
         int puntos = 0;
+        int muertes = 0;
         List<clsNave> enemigos = new List<clsNave>();
         List<clsNave> balas = new List<clsNave>();
 
@@ -26,18 +27,19 @@ namespace pryAriasMatiasExequiel
         {
             InitializeComponent();
         }
-        
+
         private void frmJuego_Load(object sender, EventArgs e)
         {
-           
             objNaveJugador = new clsNave();
             objNaveJugador.CrearJugador();
             objNaveJugador.imgNave.Location = new Point(250, 635);
             Controls.Add(objNaveJugador.imgNave);
             temporizadorEnemigo.Enabled = true;
             objLaser = new clsNave();
-            objNaveEnemiga = new clsNave(); 
+            objNaveEnemiga = new clsNave();
             lblPuntos.Text = Convert.ToString(puntos);
+
+
 
         }
 
@@ -76,16 +78,8 @@ namespace pryAriasMatiasExequiel
         {
 
         }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-
-        }
-        
-        
-        int muertes = 0;
         private void temporizadorBala_Tick(object sender, EventArgs e)
-        {  
+        {
             objNaveEnemiga = new clsNave();
             objNaveEnemiga.CrearEnemigo();
             if (objLaser.imgBala.Location.Y > 0)
@@ -97,7 +91,7 @@ namespace pryAriasMatiasExequiel
                     {
                         if (objLaser.imgBala.Bounds.IntersectsWith(imagen.Bounds))
                         {
-                            
+
                             objLaser.imgBala.Dispose();
                             imagen.Dispose();
                             puntos += 10;
@@ -108,7 +102,7 @@ namespace pryAriasMatiasExequiel
                             {
                                 contador = 0;
                                 muertes = 0;
-                            }  
+                            }
 
                         }
                     }
@@ -117,14 +111,14 @@ namespace pryAriasMatiasExequiel
             else
             {
                 objLaser.imgBala.Dispose();
-            } 
+            }
         }
         int contador, PosX, PosY;
         Random randomX = new Random();
         Random randomY = new Random();
         private void temporizadorEnemigo_Tick(object sender, EventArgs e)
         {
-            
+
             if (contador < 1)
             {
                 int x = 23;
@@ -137,11 +131,11 @@ namespace pryAriasMatiasExequiel
                     enemigos.Add(objNaveEnemiga);
                     objNaveEnemiga.imgNaveEnemiga.Location = new Point(x, PosY);
                     Controls.Add(objNaveEnemiga.imgNaveEnemiga);
-                    objNaveEnemiga.imgNaveEnemiga.Tag = "enemigo"; 
+                    objNaveEnemiga.imgNaveEnemiga.Tag = "enemigo";
                     x += objNaveEnemiga.imgNaveEnemiga.Size.Width * 2;
                 }
-                contador ++;
-            } 
+                contador++;
+            }
         }
     }
 }
