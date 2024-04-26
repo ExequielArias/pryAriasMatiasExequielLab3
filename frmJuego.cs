@@ -18,6 +18,7 @@ namespace pryAriasMatiasExequiel
         clsNave objNaveJugador;
         clsNave objNaveEnemiga;
         clsNave objLaser;
+        int puntos = 0;
 
         public frmJuego()
         {
@@ -26,12 +27,16 @@ namespace pryAriasMatiasExequiel
         
         private void frmJuego_Load(object sender, EventArgs e)
         {
+           
             objNaveJugador = new clsNave();
             objNaveJugador.CrearJugador();
             objNaveJugador.imgNave.Location = new Point(250, 635);
             Controls.Add(objNaveJugador.imgNave);
             temporizadorEnemigo.Enabled = true;
-            
+            objLaser = new clsNave();
+            objNaveEnemiga = new clsNave(); 
+            lblPuntos.Text = Convert.ToString(puntos);
+
         }
 
         private void frmJuego_KeyDown(object sender, KeyEventArgs e)
@@ -77,7 +82,7 @@ namespace pryAriasMatiasExequiel
 
         private void temporizadorBala_Tick(object sender, EventArgs e)
         {
-            int suma = 10;
+            
             objNaveEnemiga = new clsNave();
             objNaveEnemiga.CrearEnemigo();
             if (objLaser.imgBala.Location.Y > 0)
@@ -89,21 +94,23 @@ namespace pryAriasMatiasExequiel
                     {
                         if (objLaser.imgBala.Bounds.IntersectsWith(imagen.Bounds))
                         {
+                            
                             objLaser.imgBala.Dispose();
                             imagen.Dispose();
+                            puntos += 10;
+                            lblPuntos.Text = puntos.ToString();
+                            break; 
                         }
-                        
+                       
                     }
-                    suma++;
+                    
                 }
-               
             }
-             
             else
             {
                 objLaser.imgBala.Dispose();
             }
-            lblPuntos.Text = Convert.ToString(suma);
+            
         }
         int contador;
         private void temporizadorEnemigo_Tick(object sender, EventArgs e)
