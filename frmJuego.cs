@@ -109,6 +109,7 @@ namespace pryAriasMatiasExequiel
                                 contador = 0;
                                 muertes = 0;
                             }  
+
                         }
                     }
                 }
