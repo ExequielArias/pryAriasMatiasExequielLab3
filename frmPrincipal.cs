@@ -31,8 +31,9 @@ namespace pryAriasMatiasExequiel
 
         private void cmdJuego_Click(object sender, EventArgs e)
         {
-            frmJuego juego = new frmJuego();
-            juego.ShowDialog(); 
+            this.Hide(); 
+            frmInicioDeSesionJuego inicioSesion = new frmInicioDeSesionJuego();
+            inicioSesion.ShowDialog();  
         }
     }
 }

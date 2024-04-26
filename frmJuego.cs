@@ -17,7 +17,7 @@ namespace pryAriasMatiasExequiel
     {
         clsNave objNaveJugador;
         clsNave objNaveEnemiga;
-        clsNave objLaser;
+        clsNave objLaser; 
         int puntos = 0;
         int muertes = 0;
         List<clsNave> enemigos = new List<clsNave>();
@@ -136,6 +136,15 @@ namespace pryAriasMatiasExequiel
                 }
                 contador++;
             }
+        }
+
+        private void lblNombreJugador_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblNombreJugador_TextChanged(object sender, EventArgs e)
+        { 
         }
     }
 }

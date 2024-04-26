@@ -34,6 +34,7 @@
             temporizadorEnemigo = new System.Windows.Forms.Timer(components);
             lblScore = new Label();
             lblPuntos = new Label();
+            lblNombreJugador = new Label();
             SuspendLayout();
             // 
             // temporizadorBala
@@ -68,6 +69,19 @@
             lblPuntos.TabIndex = 1;
             lblPuntos.Text = "_______";
             // 
+            // lblNombreJugador
+            // 
+            lblNombreJugador.AutoSize = true;
+            lblNombreJugador.BackColor = Color.Transparent;
+            lblNombreJugador.ForeColor = Color.Yellow;
+            lblNombreJugador.Location = new Point(479, 11);
+            lblNombreJugador.Name = "lblNombreJugador";
+            lblNombreJugador.Size = new Size(52, 15);
+            lblNombreJugador.TabIndex = 2;
+            lblNombreJugador.Text = "_________";
+            lblNombreJugador.TextChanged += lblNombreJugador_TextChanged;
+            lblNombreJugador.Click += lblNombreJugador_Click;
+            // 
             // frmJuego
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -75,6 +89,7 @@
             BackColor = Color.FromArgb(64, 64, 64);
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(565, 694);
+            Controls.Add(lblNombreJugador);
             Controls.Add(lblPuntos);
             Controls.Add(lblScore);
             FormBorderStyle = FormBorderStyle.None;
@@ -95,5 +110,6 @@
         private System.Windows.Forms.Timer temporizadorEnemigo;
         private Label lblScore;
         private Label lblPuntos;
+        private Label lblNombreJugador;
     }
 }
