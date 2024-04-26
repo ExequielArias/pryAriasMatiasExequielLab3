@@ -19,6 +19,8 @@ namespace pryAriasMatiasExequiel
         clsNave objNaveEnemiga;
         clsNave objLaser;
         int puntos = 0;
+        List<clsNave> enemigos = new List<clsNave>();
+        List<clsNave> balas = new List<clsNave>();
 
         public frmJuego()
         {
@@ -99,11 +101,8 @@ namespace pryAriasMatiasExequiel
                             imagen.Dispose();
                             puntos += 10;
                             lblPuntos.Text = puntos.ToString();
-                            break; 
                         }
-                       
                     }
-                    
                 }
             }
             else
@@ -112,20 +111,25 @@ namespace pryAriasMatiasExequiel
             }
             
         }
-        int contador;
+        int contador, PosX, PosY;
+        Random randomX = new Random();
+        Random randomY = new Random();
         private void temporizadorEnemigo_Tick(object sender, EventArgs e)
         {
             if (contador < 10)
             {
-
-                objNaveEnemiga = new clsNave();
-                int x = 23;
+                 int x = 23;
                 for (int i = 0; i < 7; i++)
                 {
+                    PosX = randomX.Next(0, 10);
+                    PosY = randomY.Next(30, 40);
+                    objNaveEnemiga = new clsNave();
                     objNaveEnemiga.CrearEnemigo();
-                    objNaveEnemiga.imgNaveEnemiga.Tag = "enemigo";
-                    objNaveEnemiga.imgNaveEnemiga.Location = new Point(x, 50);
+                    enemigos.Add(objNaveEnemiga);
+                    objNaveEnemiga.imgNaveEnemiga.Location = new Point(x, PosY);
                     Controls.Add(objNaveEnemiga.imgNaveEnemiga);
+                    objNaveEnemiga.imgNaveEnemiga.Tag = "enemigo";
+                    //objNaveEnemiga.imgNaveEnemiga.Location = new Point(x, 50);
                     x += objNaveEnemiga.imgNaveEnemiga.Size.Width * 2;
                 }
                 contador++;
