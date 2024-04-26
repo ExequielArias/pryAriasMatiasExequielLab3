@@ -81,10 +81,11 @@ namespace pryAriasMatiasExequiel
         {
 
         }
-
+        
+        
+        int muertes = 0;
         private void temporizadorBala_Tick(object sender, EventArgs e)
-        {
-            
+        {  
             objNaveEnemiga = new clsNave();
             objNaveEnemiga.CrearEnemigo();
             if (objLaser.imgBala.Location.Y > 0)
@@ -101,6 +102,13 @@ namespace pryAriasMatiasExequiel
                             imagen.Dispose();
                             puntos += 10;
                             lblPuntos.Text = puntos.ToString();
+
+                            muertes = muertes + 1;
+                            if (muertes == 5)
+                            {
+                                contador = 0;
+                                muertes = 0;
+                            }  
                         }
                     }
                 }
@@ -108,18 +116,18 @@ namespace pryAriasMatiasExequiel
             else
             {
                 objLaser.imgBala.Dispose();
-            }
-            
+            } 
         }
         int contador, PosX, PosY;
         Random randomX = new Random();
         Random randomY = new Random();
         private void temporizadorEnemigo_Tick(object sender, EventArgs e)
         {
-            if (contador < 10)
+            
+            if (contador < 1)
             {
-                 int x = 23;
-                for (int i = 0; i < 7; i++)
+                int x = 23;
+                for (int i = 0; i < 5; i++)
                 {
                     PosX = randomX.Next(0, 10);
                     PosY = randomY.Next(30, 40);
@@ -128,12 +136,11 @@ namespace pryAriasMatiasExequiel
                     enemigos.Add(objNaveEnemiga);
                     objNaveEnemiga.imgNaveEnemiga.Location = new Point(x, PosY);
                     Controls.Add(objNaveEnemiga.imgNaveEnemiga);
-                    objNaveEnemiga.imgNaveEnemiga.Tag = "enemigo";
-                    //objNaveEnemiga.imgNaveEnemiga.Location = new Point(x, 50);
+                    objNaveEnemiga.imgNaveEnemiga.Tag = "enemigo"; 
                     x += objNaveEnemiga.imgNaveEnemiga.Size.Width * 2;
                 }
-                contador++;
-            }
+                contador ++;
+            } 
         }
     }
 }
