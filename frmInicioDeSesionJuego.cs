@@ -18,10 +18,24 @@ namespace pryAriasMatiasExequiel
         }
 
         public void cmdIngresar_Click(object sender, EventArgs e)
-        { 
-            txtNombre.Text = "";
-            frmJuego juego = new frmJuego();
-            juego.ShowDialog();
+        {
+            try
+            {
+                if (txtNombre.Text != "")
+                {
+                    txtNombre.Text = "";
+                    frmJuego juego = new frmJuego();
+                    juego.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Ingrese un Nombre", "Error");
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error"); 
+            }
         }
 
         private void cmdVolver_Click(object sender, EventArgs e)

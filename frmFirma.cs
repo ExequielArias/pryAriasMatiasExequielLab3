@@ -47,7 +47,14 @@ namespace pryAriasMatiasExequiel
 
         private void cmdGrabar_Click(object sender, EventArgs e)
         {
-            archivoImagen.Save("Experimento.jpg");
+            string FechaDia = "", FechaHora = "", FechaMes = "", FechaAño = "", FechaMinutos = "", FechaHoy = "";
+            FechaDia = DateTime.Now.Day.ToString();
+            FechaHora = DateTime.Now.Hour.ToString();
+            FechaMes = DateTime.Now.Month.ToString();
+            FechaAño = DateTime.Now.Year.ToString();
+            FechaMinutos = DateTime.Now.Minute.ToString();
+            FechaHoy = FechaDia + "." + FechaMes + "." + FechaAño + "." + FechaHora + "." + FechaMinutos + ".";
+            archivoImagen.Save(@"../../../"+"/Firma/" + FechaHoy + ".jpg");
             MessageBox.Show("La imagen se guardo correctamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 

@@ -25,7 +25,7 @@ namespace pryAriasMatiasExequiel
             PuntosDaño = 20; 
             imgNave = new PictureBox();
             imgNave.SizeMode = PictureBoxSizeMode.StretchImage; 
-            imgNave.ImageLocation = "https://opengameart.org/sites/default/files/lighter.gif";
+            imgNave.ImageLocation = "https://community.gamedev.tv/uploads/db2322/original/3X/c/3/c390249f863fdcbf71e18bc6414f2abb882e140f.gif";
             imgNave.BackColor = Color.Transparent;
             imgNave.Size = new Size(60, 60);
         }
@@ -47,7 +47,7 @@ namespace pryAriasMatiasExequiel
             PuntosDaño = 20;
             imgBala = new PictureBox();
             imgBala.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgBala.ImageLocation = "https://cdna.artstation.com/p/assets/images/images/067/870/542/original/lucia-robbins-laser-beam-1.gif?1696429104&dl=1";
+            imgBala.ImageLocation = "https://art.pixilart.com/d509f00ae2bee5e.png";
             imgBala.BackColor = Color.Transparent;
             imgBala.Size = new Size(30, 50);
 

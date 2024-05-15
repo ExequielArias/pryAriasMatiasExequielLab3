@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Windows;
-
+using static System.Formats.Asn1.AsnWriter;
+using System.Diagnostics.Eventing.Reader;
 
 namespace pryAriasMatiasExequiel
 {
@@ -17,11 +18,11 @@ namespace pryAriasMatiasExequiel
     {
         clsNave objNaveJugador;
         clsNave objNaveEnemiga;
-        clsNave objLaser; 
+        clsNave objLaser;
         int puntos = 0;
         int muertes = 0;
-        List<clsNave> enemigos = new List<clsNave>();
-        List<clsNave> balas = new List<clsNave>();
+        List<clsNave> ListaEnemigos = new List<clsNave>();
+        List<clsNave> ListaBalas = new List<clsNave>();
 
         public frmJuego()
         {
@@ -35,36 +36,36 @@ namespace pryAriasMatiasExequiel
             objNaveJugador.imgNave.Location = new Point(250, 635);
             Controls.Add(objNaveJugador.imgNave);
             temporizadorEnemigo.Enabled = true;
+            temporizadorBala.Enabled = true;
             objLaser = new clsNave();
             objNaveEnemiga = new clsNave();
             lblPuntos.Text = Convert.ToString(puntos);
-
-
-
         }
+
 
         private void frmJuego_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Right)
             {
                 objNaveJugador.imgNave.Location = new Point(
-                objNaveJugador.imgNave.Location.X + 5, objNaveJugador.imgNave.Location.Y);
+                objNaveJugador.imgNave.Location.X + 30, objNaveJugador.imgNave.Location.Y);
             }
             if (e.KeyCode == Keys.Left)
             {
                 objNaveJugador.imgNave.Location = new Point(
-                objNaveJugador.imgNave.Location.X - 5, objNaveJugador.imgNave.Location.Y);
-
-
+                objNaveJugador.imgNave.Location.X - 30, objNaveJugador.imgNave.Location.Y);
+                
+                
             }
+
             if (e.KeyCode == Keys.Space)
             {
                 objLaser = new clsNave();
                 objLaser.CrearBala();
+                ListaBalas.Add(objLaser);
                 objLaser.imgBala.Location = new Point(objNaveJugador.imgNave.Location.X + 20, objNaveJugador.imgNave.Location.Y - 20);
                 objNaveJugador.imgNave.BringToFront();
-                Controls.Add(objLaser.imgBala);
-                temporizadorBala.Enabled = true;
+                Controls.Add(objLaser.imgBala);      
             }
 
         }
@@ -82,36 +83,42 @@ namespace pryAriasMatiasExequiel
         {
             objNaveEnemiga = new clsNave();
             objNaveEnemiga.CrearEnemigo();
-            if (objLaser.imgBala.Location.Y > 0)
+            foreach (clsNave bala in ListaBalas)
             {
-                objLaser.imgBala.Location = new Point(objLaser.imgBala.Location.X, objLaser.imgBala.Location.Y - 100);
-                foreach (Control imagen in Controls)
+                if (bala.imgBala.Location.Y > 0)
                 {
-                    if (imagen.Tag == "enemigo")
+                    bala.imgBala.Location = new Point(bala.imgBala.Location.X, bala.imgBala.Location.Y - 100);
+                    foreach (Control imagen in Controls)
                     {
-                        if (objLaser.imgBala.Bounds.IntersectsWith(imagen.Bounds))
+                        if (imagen.Tag == "enemigo")
                         {
-
-                            objLaser.imgBala.Dispose();
-                            imagen.Dispose();
-                            puntos += 10;
-                            lblPuntos.Text = puntos.ToString();
-
-                            muertes = muertes + 1;
-                            if (muertes == 5)
+                            if (bala.imgBala.Bounds.IntersectsWith(imagen.Bounds))
                             {
-                                contador = 0;
-                                muertes = 0;
+
+                                bala.imgBala.Dispose();
+                                imagen.Dispose();
+                                puntos += 10;
+                                lblPuntos.Text = puntos.ToString();
+
+                                muertes = muertes + 1;
+                                if (muertes == 5)
+                                {
+                                    contador = 0;
+                                    muertes = 0;
+       
+                                }
                             }
 
                         }
                     }
                 }
+
+                else
+                {
+                    bala.imgBala.Dispose();
+                }
             }
-            else
-            {
-                objLaser.imgBala.Dispose();
-            }
+            
         }
         int contador, PosX, PosY;
         Random randomX = new Random();
@@ -128,7 +135,7 @@ namespace pryAriasMatiasExequiel
                     PosY = randomY.Next(30, 40);
                     objNaveEnemiga = new clsNave();
                     objNaveEnemiga.CrearEnemigo();
-                    enemigos.Add(objNaveEnemiga);
+                    ListaEnemigos.Add(objNaveEnemiga);
                     objNaveEnemiga.imgNaveEnemiga.Location = new Point(x, PosY);
                     Controls.Add(objNaveEnemiga.imgNaveEnemiga);
                     objNaveEnemiga.imgNaveEnemiga.Tag = "enemigo";
@@ -144,7 +151,7 @@ namespace pryAriasMatiasExequiel
         }
 
         private void lblNombreJugador_TextChanged(object sender, EventArgs e)
-        { 
+        {
         }
     }
 }
