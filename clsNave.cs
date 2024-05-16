@@ -49,8 +49,7 @@ namespace pryAriasMatiasExequiel
             imgBala.SizeMode = PictureBoxSizeMode.StretchImage;
             imgBala.ImageLocation = "https://art.pixilart.com/d509f00ae2bee5e.png";
             imgBala.BackColor = Color.Transparent;
-            imgBala.Size = new Size(30, 50);
-
+            imgBala.Size = new Size(15, 25);
         }
         
     }

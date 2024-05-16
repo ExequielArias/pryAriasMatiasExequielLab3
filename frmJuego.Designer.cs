@@ -74,7 +74,7 @@
             lblNombreJugador.AutoSize = true;
             lblNombreJugador.BackColor = Color.Transparent;
             lblNombreJugador.ForeColor = Color.Yellow;
-            lblNombreJugador.Location = new Point(479, 11);
+            lblNombreJugador.Location = new Point(403, 11);
             lblNombreJugador.Name = "lblNombreJugador";
             lblNombreJugador.Size = new Size(52, 15);
             lblNombreJugador.TabIndex = 2;
@@ -88,7 +88,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            ClientSize = new Size(565, 694);
+            ClientSize = new Size(564, 704);
             Controls.Add(lblNombreJugador);
             Controls.Add(lblPuntos);
             Controls.Add(lblScore);

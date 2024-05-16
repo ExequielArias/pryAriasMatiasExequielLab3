@@ -21,12 +21,15 @@ namespace pryAriasMatiasExequiel
         clsNave objLaser;
         int puntos = 0;
         int muertes = 0;
+        string NombreJugador;
         List<clsNave> ListaEnemigos = new List<clsNave>();
         List<clsNave> ListaBalas = new List<clsNave>();
 
-        public frmJuego()
+        public frmJuego(string NombreJugador)
         {
             InitializeComponent();
+            this.NombreJugador = NombreJugador;
+            this.Text += $" - {this.NombreJugador}";
         }
 
         private void frmJuego_Load(object sender, EventArgs e)
@@ -40,6 +43,7 @@ namespace pryAriasMatiasExequiel
             objLaser = new clsNave();
             objNaveEnemiga = new clsNave();
             lblPuntos.Text = Convert.ToString(puntos);
+            lblNombreJugador.Text = NombreJugador;
         }
 
 
@@ -54,8 +58,8 @@ namespace pryAriasMatiasExequiel
             {
                 objNaveJugador.imgNave.Location = new Point(
                 objNaveJugador.imgNave.Location.X - 30, objNaveJugador.imgNave.Location.Y);
-                
-                
+
+
             }
 
             if (e.KeyCode == Keys.Space)
@@ -65,7 +69,7 @@ namespace pryAriasMatiasExequiel
                 ListaBalas.Add(objLaser);
                 objLaser.imgBala.Location = new Point(objNaveJugador.imgNave.Location.X + 20, objNaveJugador.imgNave.Location.Y - 20);
                 objNaveJugador.imgNave.BringToFront();
-                Controls.Add(objLaser.imgBala);      
+                Controls.Add(objLaser.imgBala);
             }
 
         }
@@ -105,7 +109,7 @@ namespace pryAriasMatiasExequiel
                                 {
                                     contador = 0;
                                     muertes = 0;
-       
+
                                 }
                             }
 
@@ -118,7 +122,7 @@ namespace pryAriasMatiasExequiel
                     bala.imgBala.Dispose();
                 }
             }
-            
+
         }
         int contador, PosX, PosY;
         Random randomX = new Random();

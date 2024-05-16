@@ -21,11 +21,13 @@ namespace pryAriasMatiasExequiel
         {
             try
             {
-                if (txtNombre.Text != "")
+                if (txtNombre.Text != "") 
                 {
+                    this.Hide();
                     txtNombre.Text = "";
-                    frmJuego juego = new frmJuego();
+                    frmJuego juego = new frmJuego(txtNombre.Text);
                     juego.ShowDialog();
+                    this.Close();
                 }
                 else
                 {
