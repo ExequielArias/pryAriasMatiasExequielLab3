@@ -11,6 +11,7 @@ using System.IO;
 using System.Windows;
 using static System.Formats.Asn1.AsnWriter;
 using System.Diagnostics.Eventing.Reader;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace pryAriasMatiasExequiel
 {
@@ -19,11 +20,13 @@ namespace pryAriasMatiasExequiel
         clsNave objNaveJugador;
         clsNave objNaveEnemiga;
         clsNave objLaser;
+        clsNave objBalaEnemiga;
         int puntos = 0;
         int muertes = 0;
         string NombreJugador;
         List<clsNave> ListaEnemigos = new List<clsNave>();
         List<clsNave> ListaBalas = new List<clsNave>();
+        List<clsNave> ListaBalasEnemigas = new List<clsNave>();         
 
         public frmJuego(string NombreJugador)
         {
@@ -42,6 +45,7 @@ namespace pryAriasMatiasExequiel
             temporizadorBala.Enabled = true;
             objLaser = new clsNave();
             objNaveEnemiga = new clsNave();
+            objBalaEnemiga = new clsNave();
             lblPuntos.Text = Convert.ToString(puntos);
             lblNombreJugador.Text = NombreJugador;
         }
@@ -127,6 +131,8 @@ namespace pryAriasMatiasExequiel
         int contador, PosX, PosY;
         Random randomX = new Random();
         Random randomY = new Random();
+        //Random DisparoEnemigo = new Random();
+        //int PosBalaE;
         private void temporizadorEnemigo_Tick(object sender, EventArgs e)
         {
 
@@ -135,18 +141,71 @@ namespace pryAriasMatiasExequiel
                 int x = 23;
                 for (int i = 0; i < 5; i++)
                 {
-                    PosX = randomX.Next(0, 10);
+                    PosX = randomX.Next(0, 650);
                     PosY = randomY.Next(30, 40);
+
                     objNaveEnemiga = new clsNave();
                     objNaveEnemiga.CrearEnemigo();
+                    objNaveEnemiga.CrearBalaEnemiga();
+
                     ListaEnemigos.Add(objNaveEnemiga);
+                    
+
                     objNaveEnemiga.imgNaveEnemiga.Location = new Point(x, PosY);
+
                     Controls.Add(objNaveEnemiga.imgNaveEnemiga);
+                    objNaveEnemiga.imgNaveEnemiga.Tag = "enemigo";
+                    x += objNaveEnemiga.imgNaveEnemiga.Size.Width * 2;
+                    ListaBalasEnemigas.Add(objBalaEnemiga);
+                }
+                contador++;
+            }
+
+            if (contador < 1)
+            {
+                int x = 23;
+                for (int i = 0; i < 5; i++)
+                {
+                    PosX = randomX.Next(0, 650);
+                    PosY = randomY.Next(30, 40);
+
+                    objNaveEnemiga = new clsNave();
+                    objNaveEnemiga.CrearEnemigo();
+
+
+                    ListaEnemigos.Add(objNaveEnemiga);
+
+
+                    objNaveEnemiga.imgNaveEnemiga.Location = new Point(x, PosY);
+
+                    Controls.Add(objNaveEnemiga.imgNaveEnemiga);
+
                     objNaveEnemiga.imgNaveEnemiga.Tag = "enemigo";
                     x += objNaveEnemiga.imgNaveEnemiga.Size.Width * 2;
                 }
                 contador++;
             }
+            //PosBalaE = DisparoEnemigo.Next(1, 500);
+            //foreach (clsNave NaveE in ListaEnemigos)
+            //{
+            //    if (DisparoEnemigo.Next(1, 300) == 10)
+            //    {
+            //        objNaveEnemiga = new clsNave();
+            //        objNaveEnemiga.CrearBalaEnemiga();
+            //        ListaBalasEnemigas.Add(objNaveEnemiga);
+            //        Controls.Add(objNaveEnemiga.imgBalaEnemiga);
+            //        foreach (clsNave BalasE in ListaBalasEnemigas)
+            //        {
+            //            BalasE.imgBalaEnemiga.Location = new Point(NaveE.imgBalaEnemiga.Location.X, BalasE.imgBalaEnemiga.Location.Y + 15);
+            //            if (BalasE.imgBalaEnemiga.Bounds.IntersectsWith(objNaveJugador.imgNave.Bounds))
+            //            {
+            //                BalasE.imgBalaEnemiga.Dispose();
+            //                objNaveJugador.imgNave.Dispose();
+            //                MessageBox.Show("Partida Finalizada", "FIN");
+            //            }
+            //        }
+            //    }
+            //}
         }
 
         private void lblNombreJugador_Click(object sender, EventArgs e)
